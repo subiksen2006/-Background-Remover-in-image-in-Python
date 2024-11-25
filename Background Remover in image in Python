@@ -1,0 +1,28 @@
+from rembg import remove
+from PIL import Image
+import io
+
+# Function to remove background from an image
+def remove_background(input_image_path, output_image_path):
+    try:
+        # Open the input image
+        with open(input_image_path, 'rb') as input_file:
+            input_data = input_file.read()
+        
+        # Remove the background
+        output_data = remove(input_data)
+        
+        # Save the output image
+        with open(output_image_path, 'wb') as output_file:
+            output_file.write(output_data)
+        
+        print(f"Background removed successfully. Saved as {output_image_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Specify paths for the input and output images
+input_path = "input_image.jpg"  # Replace with your input image file path
+output_path = "output_image.png"  # Output will be saved as PNG with transparent background
+
+# Call the function
+remove_background(input_path, output_path)
